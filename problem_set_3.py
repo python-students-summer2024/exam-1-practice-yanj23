@@ -12,7 +12,9 @@ import random
 # This function accepts two arguments: a minimum value and a maximum value.
 # The function must return a random integer between these two values, inclusive.
 # Use the function random.randint() to generate the pseudo-random number.
-
+def get_random_int(minimum,maximum):
+    random_num = random.randint(minimum,maximum)
+    return random_num
 
 ##--------------------- Function #2 ---------------------##
 # Define a function named 'get_guess'.
@@ -23,6 +25,19 @@ import random
 # If the user has guessed the random integer correctly, this function returns a boolean True.
 # If the user has guessed incorrectly, this function returns a boolean False.
 
+def get_guess(max_value):
+    user_guess = input("Guess a random integer between 1 and the max value, inclusive: ")
+    random_int = get_random_int(1,max_value)
+
+    if user_guess.isnumeric() is False:
+        return(-1)
+    elif int(user_guess)<1 or int(user_guess)>max_value:
+        return(-1)
+    elif int(user_guess) == random_int:
+        return True
+    else:
+        return False
+
 
 ##--------------------- Function #3 ---------------------##
 # Define a function named 'play_game'.
@@ -31,4 +46,25 @@ import random
 # Each time the user guesses, they are immediately informed whether they guessed correctly or not, with the printed output, "Correct!" or "Wrong!"
 # If at any time, the user enters an invalid response, the program immediately prints out the text, "Invalid response!" and does not print out anything further.
 # At the end, the function, assuming the user has entered all valid guesses, the program prints out the percent of guesses that user guessed correctly, following the format: "You guessed 75% of the random numbers correctly."
+def play_game():
+    
+    correct_guess = 0
+    times_played = 0
 
+    while (times_played < 4):
+        user_guess = get_guess(5)
+        if user_guess is True:
+            print("Correct!")
+            times_played = times_played + 1
+            correct_guess = correct_guess + 1
+        elif user_guess is False:
+            print("Wrong!")
+            times_played = times_played + 1
+        else:
+            print("Invalid response!")
+            break
+    
+    if times_played == 4:
+        percent_correct = correct_guess/4
+        percent_correct = str(format(percent_correct,'.0%'))
+        print("You guessed " + percent_correct + " of the random numbers correctly.")
