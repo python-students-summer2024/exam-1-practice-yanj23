@@ -51,7 +51,7 @@ def play_game():
     correct_guess = 0
     times_played = 0
 
-    while (times_played < 4):
+    for times_played in [0,1,2,3]:
         user_guess = get_guess(5)
         if user_guess is True:
             print("Correct!")
