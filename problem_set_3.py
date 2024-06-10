@@ -26,7 +26,7 @@ def get_random_int(minimum,maximum):
 # If the user has guessed incorrectly, this function returns a boolean False.
 
 def get_guess(max_value):
-    user_guess = input("Guess a random integer between 1 and the max value, inclusive: ")
+    user_guess = input("Guess a random integer between 1 and the " + str(max_value) + ", inclusive: ")
     random_int = get_random_int(1,max_value)
 
     if user_guess.isnumeric() is False:
